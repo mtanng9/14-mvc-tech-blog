@@ -18,11 +18,11 @@
   "homepage": "https://github.com/mtanng9/14-mvc-tech-blog#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
-    "connect-session-sequelize": "^7.1.5",
+    "connect-session-sequelize": "^7.1.6",
     "dotenv": "^16.0.3",
-    "express-handlebars": "^7.0.1",
+    "express-handlebars": "^7.0.7",
     "express-session": "^1.17.3",
-    "mysql2": "^3.2.0",
-    "sequelize": "^6.29.1"
+    "mysql2": "^3.2.4",
+    "sequelize": "^6.31.0"
   }
 }
