@@ -12,9 +12,7 @@ const PORT = process.env.PORT || 3001;
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(require('./controllers'));
 
-app.get('/', (req, res) => {
-    res.render('home', {layout: 'index'});
-});
 
 app.listen(PORT, console.log("Server started on port: " + PORT))
