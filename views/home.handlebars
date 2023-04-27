@@ -1,1 +1,8 @@
-<h1>Example App: Home</h1>
+{{#each posts as |post| }}
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title"><a href="/post/{{post.id}}">{{post.title}}</a></h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary">{{post.date_created}}</h6>
+  </div>
+</div>
+{{/each}}
