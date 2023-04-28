@@ -26,7 +26,6 @@ router.delete('/:id', withAuth, async (req, res) => {
         const postData = await Post.destroy({ where: {id: req.params.id} });
         res.status(200).json(postData);
       } catch (err) {
-        console.log(err)
         res.status(400).json(err);
       }
 });
