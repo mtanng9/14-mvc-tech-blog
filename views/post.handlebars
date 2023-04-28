@@ -7,6 +7,10 @@
   </div>
 </div>
 
+{{#if logged_in}}
+  <button class="btn btn-primary" type="submit">Leave Comment</button>
+{{/if}}
+
 {{#each post.comments as |comment| }}
 <div class="card" style="width: 18rem;">
   <div class="card-body">
