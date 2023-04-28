@@ -1,12 +1,48 @@
 {{#if dashboard}}
-  <button class="btn btn-primary" type="submit">Create Post</button>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newPostModal">
+    Create Post
+  </button>
 {{/if}}
 
 {{#each posts as |post| }}
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title"><a href="/post/{{post.id}}">{{post.title}}</a></h5>
-    <h6 class="card-subtitle mb-2 text-body-secondary">{{post.date_created}}</h6>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title"><a href="/post/{{post.id}}">{{post.title}}</a></h5>
+      <h6 class="card-subtitle mb-2 text-body-secondary">{{post.date_created}}</h6>
+    </div>
   </div>
-</div>
 {{/each}}
+
+{{#if dashboard}}
+  <div class="modal fade" id="newPostModal" tabindex="-1" aria-labelledby="newPost" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="newPost">New Post</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="col-md-6">
+          <form class="form new-post-form">
+              <input hidden type="text" id="currentUserId" value="{{current_user_id}}">
+              <div class="mb-3">
+                  <label for="new-post-title" class="form-label">Title:</label>
+                  <input type="text" class="form-control" id="new-post-title" rows="3" placeholder="Example Title">
+              </div>
+              <div class="mb-3">
+                <label for="new-post-content" class="form-label">Content:</label>
+                <textarea class="form-control" id="new-post-content" rows="3" placeholder="Enter Text Here"></textarea>
+            </div>
+          </form>    
+      </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="new-post-submit">Submit Post</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/dashboard.js"></script>
+{{/if}}

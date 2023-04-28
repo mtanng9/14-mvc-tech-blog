@@ -7,39 +7,17 @@
 </div>
 
 {{#if logged_in}}
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#commentModal">
     Leave Comment
   </button>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">New Comment</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="col-md-6">
-        <form class="form comment-form">
-            <input hidden type="text" id="currentUserId" value="{{current_user_id}}">
-            <input hidden type="text" id="postId" value="{{post.id}}">
-            <p id="postId" hidden>{{post.id}}</p>
-            <div class="mb-3">
-                <label for="comment-comment" class="form-label">Comment:</label>
-                <textarea class="form-control" id="comment-comment" rows="3" placeholder="Example Comment"></textarea>
-            </div>
-        </form>    
-    </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" id="comment-submit">Submit Comment</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script src="/js/comment.js"></script>
+{{/if}}
+{{#if own_post}}
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editPostModal">
+    Edit Post
+  </button>
+    <button type="button" class="btn btn-primary" id="delete-post-submit">
+    Delete Post
+  </button>
 {{/if}}
 
 {{#each post.comments as |comment| }}
@@ -51,3 +29,73 @@
   </div>
 </div>
 {{/each}}
+
+{{#if logged_in}}
+  <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="comment" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="comment">New Comment</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="col-md-6">
+          <form class="form comment-form">
+              <input hidden type="text" id="currentUserId" value="{{current_user_id}}">
+              <input hidden type="text" id="postId" value="{{post.id}}">
+              <div class="mb-3">
+                  <label for="comment-comment" class="form-label">Comment:</label>
+                  <textarea class="form-control" id="comment-comment" rows="3" placeholder="Example Comment"></textarea>
+              </div>
+          </form>    
+      </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="comment-submit">Submit Comment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/if}}
+
+{{#if own_post}}
+  <div class="modal fade" id="editPostModal" tabindex="-1" aria-labelledby="editPost" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="editPost">Edit Post</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="col-md-6">
+          <form class="form edit-post-form">
+              <input hidden type="text" id="currentUserId" value="{{current_user_id}}">
+              <input hidden type="text" id="postId" value="{{post.id}}">
+              <div class="mb-3">
+                  <label for="edit-post-title" class="form-label">Title:</label>
+                  <input type="text" class="form-control" id="edit-post-title" rows="3" value="{{post.title}}">
+              </div>
+              <div class="mb-3">
+                <label for="edit-post-content" class="form-label">Content:</label>
+                <textarea class="form-control" id="edit-post-content" rows="3">{{post.content}}</textarea>
+            </div>
+          </form>    
+      </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="edit-post-submit">Edit Post</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/if}}
+
+{{#if logged_in}}
+  <script src="/js/comment.js"></script>
+{{/if}}
+
+{{#if own_post}}
+  <script src="/js/post.js"></script>
+{{/if}}

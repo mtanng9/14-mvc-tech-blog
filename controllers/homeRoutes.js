@@ -31,6 +31,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
     res.render('home', {
       posts,
       logged_in: req.session.logged_in,
+      current_user_id: req.session.user_id,
       dashboard: true,
       layout: 'index'
   });
@@ -61,6 +62,7 @@ router.get('/post/:id', async (req, res) => {
         post,
         logged_in: req.session.logged_in,
         current_user_id: req.session.user_id,
+        own_post: req.session.user_id === post.user_id,
         layout: 'index'
       });
     } catch (err) {
